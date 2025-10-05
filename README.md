@@ -17,6 +17,7 @@ Nuestro proyecto, **StockSavvy**, ofrece una solución práctica, automatizada y
 - Calcular precios reales de productos nacionales e importados.
 - Gestionar inventarios de forma eficiente.
 - Registrar ventas y actualizar existencias automáticamente.
+  
 🧱 2. Diseño y Arquitectura
 El sistema está diseñado bajo una arquitectura modular, aplicando los principios de **herencia** y **polimorfismo**, lo que permite extender o modificar fácilmente las funcionalidades.
 
@@ -31,11 +32,13 @@ El sistema utiliza SQLite como base de datos local para almacenar todos los prod
 `Nombre`, `Tipo`, `Costo Unitario`, `Cantidad`, `Margen`, `Fabricante`, `País Origen`, `Costo Envío`, `Tasa Arancel`.
 
 Una de las funciones más útiles es que, si se agrega un producto con el mismo nombre, el sistema **actualiza la cantidad existente** en lugar de crear un registro duplicado.
+
 ⚙️ 3. Requisitos del sistema
 - Python 3.10 o superior
 - Librería estándar `sqlite3`
 - Jupyter Notebook o Visual Studio Code para ejecutar el proyecto
 - Archivo `inventario.db` en el mismo directorio del notebook
+  
 ▶️ 4. Cómo ejecutar el programa
 **Opción A — Desde Jupyter Notebook:**
 1. Abre el archivo `Taller_2_StockSavvy_Grupo_1.ipynb`.
@@ -55,6 +58,7 @@ costo_total = CIF + arancel
 precio_venta_total = costo_total * (1 + margen%)
 precio_unitario = costo_unitario * (1 + margen%)
 valor_inventario = precio_unitario * cantidad
+
 🧩 5. Cómo funciona el código
 El sistema está basado en una estructura de **clases y métodos** que interactúan con la base de datos. Cada producto se modela como un objeto con sus propios atributos y comportamientos, lo que permite mantener una lógica clara y escalable.
 **Flujo general del programa:**
@@ -64,6 +68,7 @@ El sistema está basado en una estructura de **clases y métodos** que interact�
 4. Si se ingresa un producto repetido, el sistema suma su cantidad.
 5. Es posible consultar el inventario completo o registrar ventas.
 6. Al vender, se actualiza automáticamente la cantidad disponible y se calcula el valor de la venta.
+   
 📊 6. Interfaz de menú interactivo
 El usuario puede elegir entre las siguientes opciones:
 1️⃣ Agregar producto nacional
@@ -73,6 +78,7 @@ El usuario puede elegir entre las siguientes opciones:
 5️⃣ Registrar una venta
 6️⃣ Salir del sistema
 Cada opción ejecuta funciones específicas que combinan la lógica del modelo de clases con consultas a la base de datos, mostrando resultados actualizados en tiempo real.
+
 🎉 7. Resultados esperados
 Cada vez que el usuario ejecuta una acción, el sistema muestra un resumen con el nombre del producto, su tipo, el precio unitario, la cantidad disponible y el valor total del inventario.
 
