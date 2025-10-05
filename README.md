@@ -8,7 +8,6 @@
 - Taller_2_StockSavvy_Grupo_1.ipynb
 - inventario.db
 - Diseño_Arquitectura_Grupo_1.pdf
-- README.md
 
 🧠 1. Problema que resolvemos
 Muchos pequeños importadores y negocios locales enfrentan dificultades para calcular correctamente el costo real de sus productos. A menudo subestiman gastos como el envío, el seguro o los aranceles, lo que afecta sus márgenes de ganancia. Además, no cuentan con herramientas simples para llevar un registro de inventario actualizado o registrar ventas de manera organizada.
