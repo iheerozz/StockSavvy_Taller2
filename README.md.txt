@@ -1,59 +1,53 @@
 📦 StockSavvy – Taller 2 (POO + SQLite)
-
-Integrantes:
-- Santoiago Acosta
-- Santigo Arago
+**Integrantes:**
+- Santiago Acosta
+- Santiago Aragon
 - Guillaume Garey
 
-Archivos principales:
-- Taller_2_Santoiago_Acosta_Santigo_Arago_Guillaume_Garey.ipynb
+**Archivos principales:**
+- Taller_2_StockSavvy_Grupo_1.ipynb
 - inventario.db
-- Diseño_Arquitectura_Grupo_X.pdf
-
----
+- Diseño_Arquitectura_Grupo_1.pdf
+- README.md
 
 🧠 1. Problema que resolvemos
-Pequeños importadores y negocios locales necesitan calcular el costo real de sus productos (costo de fábrica + envío + seguro + arancel) y definir un precio de venta justo con margen de ganancia. 
-Además, requieren una forma fácil de gestionar inventarios y registrar ventas.
+Muchos pequeños importadores y negocios locales enfrentan dificultades para calcular correctamente el costo real de sus productos. A menudo subestiman gastos como el envío, el seguro o los aranceles, lo que afecta sus márgenes de ganancia. Además, no cuentan con herramientas simples para llevar un registro de inventario actualizado o registrar ventas de manera organizada.
 
-StockSavvy automatiza estos cálculos usando Python, Programación Orientada a Objetos (POO) y una base de datos SQLite.
-
----
-
+Nuestro proyecto, **StockSavvy**, ofrece una solución práctica, automatizada y accesible. Combina los principios de la **Programación Orientada a Objetos (POO)** con una **base de datos SQLite** para crear un sistema que permite: 
+- Calcular precios reales de productos nacionales e importados.
+- Gestionar inventarios de forma eficiente.
+- Registrar ventas y actualizar existencias automáticamente.
 🧱 2. Diseño y Arquitectura
-El sistema aplica herencia y polimorfismo.
+El sistema está diseñado bajo una arquitectura modular, aplicando los principios de **herencia** y **polimorfismo**, lo que permite extender o modificar fácilmente las funcionalidades.
 
-Clases principales:
-- Producto: Clase base con atributos comunes (nombre, costo_unitario, margen, cantidad)
-- ProductoNacional: Hereda de Producto, añade el atributo fabricante
-- ProductoImportado: Hereda de Producto, añade pais_origen, costo_envio, tasa_arancel
-- EstrategiaPrecio: Clase con un método estático que usa polimorfismo para calcular precios según el tipo de producto
+A continuación, se presentan las clases principales del sistema:
+- **Producto:** Clase base que contiene los atributos comunes a todos los productos: nombre, costo unitario, margen y cantidad.
+- **ProductoNacional:** Hereda de Producto y añade el atributo 'fabricante'. Se usa para representar productos fabricados en el país.
+- **ProductoImportado:** Hereda de Producto y añade los atributos 'país de origen', 'costo de envío' y 'tasa de arancel'. Permite calcular el costo real de importación considerando seguros y tarifas.
+- **EstrategiaPrecio:** Clase auxiliar con un método estático que aplica polimorfismo para calcular precios según el tipo de producto.
 
-Base de datos:
-Tabla productos con columnas: Nombre, Tipo, Costo Unitario, Cantidad, Margen, Fabricante, País Origen, Costo Envío, Tasa Arancel.
-Si se inserta un producto con el mismo nombre, el sistema suma la cantidad existente en lugar de duplicar el registro.
+📊 **Base de datos:**
+El sistema utiliza SQLite como base de datos local para almacenar todos los productos. La tabla principal se llama `productos` y contiene las siguientes columnas:
+`Nombre`, `Tipo`, `Costo Unitario`, `Cantidad`, `Margen`, `Fabricante`, `País Origen`, `Costo Envío`, `Tasa Arancel`.
 
----
-
+Una de las funciones más útiles es que, si se agrega un producto con el mismo nombre, el sistema **actualiza la cantidad existente** en lugar de crear un registro duplicado.
 ⚙️ 3. Requisitos del sistema
 - Python 3.10 o superior
-- Librería estándar sqlite3
-- Jupyter Notebook o VS Code para ejecutar el proyecto
-
----
-
+- Librería estándar `sqlite3`
+- Jupyter Notebook o Visual Studio Code para ejecutar el proyecto
+- Archivo `inventario.db` en el mismo directorio del notebook
 ▶️ 4. Cómo ejecutar el programa
-Opción A — Desde Jupyter Notebook
-1. Abre el archivo Taller_2_Santoiago_Acosta_Santigo_Arago_Guillaume_Garey.ipynb
-2. Asegúrate de que el archivo inventario.db está en el mismo directorio
-3. Ejecuta todas las celdas (Kernel → Restart & Run All)
-4. Aparecerá el menú del sistema
+**Opción A — Desde Jupyter Notebook:**
+1. Abre el archivo `Taller_2_StockSavvy_Grupo_1.ipynb`.
+2. Asegúrate de que el archivo `inventario.db` está en el mismo directorio.
+3. Ejecuta todas las celdas (Kernel → Restart & Run All).
+4. Aparecerá un menú interactivo en la consola.
+**Opción B — Desde terminal (opcional):**
+Si existe una versión `.py` del proyecto, puede ejecutarse directamente desde la terminal:
 
-Opción B — Script (opcional)
-Si incluyen una versión .py con el menú:
-python src/app_inventario.py
+`python Taller_2_StockSavvy_Grupo_1.py`
 
-Cálculos principales:
+**Cálculos principales implementados:**
 CIF = (costo_unitario * cantidad) + costo_envio + seguro
 seguro = (mercancía + envío) * tasa_seguro%
 arancel = CIF * tasa_arancel%
@@ -61,53 +55,38 @@ costo_total = CIF + arancel
 precio_venta_total = costo_total * (1 + margen%)
 precio_unitario = costo_unitario * (1 + margen%)
 valor_inventario = precio_unitario * cantidad
+🧩 5. Cómo funciona el código
+El sistema está basado en una estructura de **clases y métodos** que interactúan con la base de datos. Cada producto se modela como un objeto con sus propios atributos y comportamientos, lo que permite mantener una lógica clara y escalable.
+**Flujo general del programa:**
+1. El usuario ejecuta el programa y accede a un menú interactivo.
+2. Puede agregar productos nacionales o importados.
+3. Los datos se guardan en la base de datos `inventario.db`.
+4. Si se ingresa un producto repetido, el sistema suma su cantidad.
+5. Es posible consultar el inventario completo o registrar ventas.
+6. Al vender, se actualiza automáticamente la cantidad disponible y se calcula el valor de la venta.
+📊 6. Interfaz de menú interactivo
+El usuario puede elegir entre las siguientes opciones:
+1️⃣ Agregar producto nacional
+2️⃣ Agregar producto importado
+3️⃣ Mostrar inventario completo
+4️⃣ Ver valor total del inventario
+5️⃣ Registrar una venta
+6️⃣ Salir del sistema
+Cada opción ejecuta funciones específicas que combinan la lógica del modelo de clases con consultas a la base de datos, mostrando resultados actualizados en tiempo real.
+🎉 7. Resultados esperados
+Cada vez que el usuario ejecuta una acción, el sistema muestra un resumen con el nombre del producto, su tipo, el precio unitario, la cantidad disponible y el valor total del inventario.
 
----
+Esto facilita la toma de decisiones empresariales rápidas y precisas, sin necesidad de hojas de cálculo externas.
+🤝 Créditos y aprendizajes del equipo
+Este proyecto fue una oportunidad para poner en práctica conceptos clave de la programación moderna, combinando teoría y aplicación real.
 
-⚙️ 5. ¿Cómo funciona el código?
-El sistema StockSavvy combina la programación orientada a objetos (POO) con una base de datos SQLite, para crear una aplicación simple pero muy útil de gestión de inventario para productos nacionales e importados.
+Durante su desarrollo, el equipo aprendió a:
+- Diseñar e implementar clases con **herencia y polimorfismo**.
+- Conectar programas Python con una **base de datos SQLite**.
+- Aplicar buenas prácticas de documentación y control de versiones en GitHub.
 
-Estructura del código:
-- Producto: Clase base. Contiene los datos comunes como el nombre, costo unitario, margen de ganancia y cantidad.
-- ProductoNacional: Hereda de Producto y agrega el atributo fabricante. Representa productos hechos en el país.
-- ProductoImportado: También hereda de Producto, pero incluye el país de origen, el costo de envío y el arancel.
-- EstrategiaPrecio: Usa polimorfismo para calcular el precio dependiendo del tipo de producto.
+**StockSavvy** nos permitió comprender cómo la automatización puede optimizar la gestión de inventarios y apoyar la toma de decisiones en pequeños negocios.
 
-Cálculos principales:
-CIF = (costo_unitario * cantidad) + costo_envio + seguro
-seguro = (mercancía + envío) * tasa_seguro%
-arancel = CIF * tasa_arancel%
-costo_total = CIF + arancel
-precio_venta_total = costo_total * (1 + margen%)
-
-Base de datos SQLite:
-El archivo inventario.db guarda todos los productos en la tabla productos.
-Cada vez que el usuario agrega un producto, registra una venta o consulta el inventario, el sistema interactúa directamente con la base de datos.
-Si se agrega el mismo producto dos veces, no se duplica: el programa actualiza la cantidad existente.
-Los datos persisten incluso después de cerrar el programa.
-
-Interfaz por consola (menú interactivo):
-1. Agregar producto nacional
-2. Agregar producto importado
-3. Mostrar inventario
-4. Ver valor total del inventario
-5. Registrar venta
-6. Salir
-
-Resultados y reportes:
-Después de cada acción, el sistema muestra nombre y tipo de cada producto, precio unitario, cantidad disponible y valor total del inventario.
-
-🎉 En resumen:
-StockSavvy automatiza cálculos de importación y márgenes, guarda todo en SQLite, permite agregar, vender y consultar productos fácilmente, y aplica POO de forma clara y extensible.
-
-🤝 Créditos y aprendizajes del equipo:
-Este proyecto fue una oportunidad para aplicar de forma práctica los conceptos de POO, persistencia de datos, y estructura modular de software.
-Durante el desarrollo, aprendimos a:
-- Diseñar e implementar clases con herencia y polimorfismo.
-- Usar bases de datos SQLite integradas en Python.
-- Organizar un proyecto profesional con control de versiones y documentación.
-
-StockSavvy nos permitió conectar la teoría de programación con un caso real de negocio, entendiendo cómo la automatización puede mejorar la gestión de inventarios.
 
 
 
